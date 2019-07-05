@@ -1,5 +1,6 @@
 import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
 import java.net.URI
 
 
@@ -178,5 +179,8 @@ tasks {
     }
     withType<KotlinCompile> {
         dependsOn("generateMetadataBuildConfigKotlin")
+    }
+    withType<KotlinNativeCompile> {
+        kotlinOptions.freeCompilerArgs = listOf("-Xdisable-phases=Devirtualization")
     }
 }
