@@ -35,6 +35,11 @@ kotlin {
             }
         }
     }
+    iosX64("ios") {
+        binaries {
+            framework()
+        }
+    }
     sourceSets {
         all {
             languageSettings.progressiveMode = true
@@ -75,6 +80,20 @@ kotlin {
                 implementation(Ktor("client-okhttp"))
                 implementation(Ktor("client-apache"))
                 implementation(Ktor("client-android"))
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                api(Ktor("client-core-native"))
+                api(Ktor("client-json-native"))
+                api(Ktor("client-logging-native"))
+                api(Ktor("client-serialization-native"))
+            }
+        }
+        val iosTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(Ktor("client-mock-native"))
             }
         }
     }
